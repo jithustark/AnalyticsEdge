@@ -1,6 +1,9 @@
 # An Analytical Detective
 
-setwd("D:/JITHU/AnalyticsEdge")
+### setwd("D:/JITHU/AnalyticsEdge") # Saleem Laptop Path
+
+setwd("D:/AnalyticsEdge") # Personal Laptop Path
+
 getwd()
 
 # Loading data
@@ -95,8 +98,7 @@ Top5
 
 ##################################  Stock Dynamics ####################################
 
-setwd("D:/JITHU/AnalyticsEdge")
-getwd()
+
 
 IBM = read.csv("Data/IBMStock.csv")
 GE = read.csv("Data/GEStock.csv")
@@ -116,7 +118,7 @@ ProcterGamble$Date = as.Date(ProcterGamble$Date, "%m/%d/%y")
 
 Boeing$Date = as.Date(Boeing$Date, "%m/%d/%y")
 
-# Our five datasets all have the same number of observations. How many observations are there in each data set?
+# 1. Our five datasets all have the same number of observations. How many observations are there in each data set?
 
 nrow(IBM)
 nrow(GE)
@@ -126,4 +128,43 @@ nrow(Boeing)
 
 12 * 480
 
+
+# 2. What is the earliest year in our datasets?
+
+summary(IBM)
+summary(GE)
+summary(CocaCola)
+summary(ProcterGamble)
+summary(Boeing)
+
+
+
+sd(ProcterGamble$StockPrice)
+
+### Visualizing Stock Dynamics
+
+plot(CocaCola$Date, CocaCola$StockPrice, xlab = "Date", ylab = "StockPrice", main = "Stock Price of Cocacola", type = 'l', col = 'red')
+
+
+lines(ProcterGamble$Date, ProcterGamble$StockPrice, col = 'blue')
+
+abline(v=as.Date(c("2000-03-01")), lwd=2)
+
+
+####### 1995 - 2005
+
+plot(CocaCola$Date[301:432], CocaCola$StockPrice[301:432], type = "l", col = "red", ylim = c(0,210), lty = 1)
+
+lines(IBM$Date[301:432], IBM$StockPrice[301:432], col = 'blue', lty = 2)
+
+lines(GE$Date[301:432], GE$StockPrice[301:432], col = 'black', lty = 3)
+
+lines(ProcterGamble$Date[301:432], ProcterGamble$StockPrice[301:432], col = 'green', lty = 4)
+
+lines(Boeing$Date[301:432], Boeing$StockPrice[301:432], col = 'purple', lty = 5)
+
+
+abline(v=as.Date(c('1997-09-01')), lwd=2)
+
+abline(v=as.Date(c("1997-11-01")), lwd=2)
 
